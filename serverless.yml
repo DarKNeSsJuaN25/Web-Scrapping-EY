@@ -12,7 +12,7 @@ custom:
     maxConcurrentRequests: 5
     perMethodThrottling:
       - http:
-          path: scrape2
+          path: scrape
           method: GET
         maxRequestsPerSecond: 20
         maxConcurrentRequests: 5
@@ -39,13 +39,13 @@ provider:
     shouldStartNameWithService: true
 
 functions:
-  scrape_2:
+  scrape:
     image:
       name: scrapingimage
     timeout: 29
     events:
       - http:
-          path: scrape2
+          path: scrape
           method: get
           cors: true
 
