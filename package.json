@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "serverless-api-gateway-throttling": "^2.0.3",
+    "serverless-python-requirements": "^6.1.2"
+  }
+}

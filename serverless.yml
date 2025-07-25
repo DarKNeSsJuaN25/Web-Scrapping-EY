@@ -1,0 +1,92 @@
+org: laredojuan25
+service: scraping-service-2
+
+plugins:
+  - serverless-python-requirements
+  - serverless-api-gateway-throttling
+
+custom:
+  apiGatewayThrottling:
+    enabled: true
+    maxRequestsPerSecond: 20
+    maxConcurrentRequests: 5
+    perMethodThrottling:
+      - http:
+          path: scrape2
+          method: GET
+        maxRequestsPerSecond: 20
+        maxConcurrentRequests: 5
+  pythonRequirements:
+    dockerizePip: true
+
+provider:
+  name: aws
+  runtime: python3.10
+  region: us-east-1
+  stage: dev
+  timeout: 30
+  environment:
+    TABLE_NAME: UsuariosTable
+    JWT_SECRET: tu_clave_secreta_segura # Cambia esto por una segura
+  iam:
+    role: arn:aws:iam::352677750379:role/LabRole
+  ecr:
+    images:
+      scrapingimage:
+        path: .
+
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  scrape_2:
+    image:
+      name: scrapingimage
+    timeout: 29
+    events:
+      - http:
+          path: scrape2
+          method: get
+          cors: true
+
+  register:
+    handler: auth.crear_usuario
+    events:
+      - http:
+          path: register
+          method: post
+          cors: true
+
+  login:
+    handler: auth.login
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
+
+  validate:
+    handler: auth.validar_token
+    events:
+      - http:
+          path: validate
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    UsuariosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UsuariosTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: username
+            KeyType: RANGE
