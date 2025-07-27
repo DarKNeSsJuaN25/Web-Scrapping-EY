@@ -225,3 +225,16 @@ Este servicio serverless implementa su propio sistema de autenticación para con
 - Este token incluye el `tenant_id`, `username` y una fecha de expiración.
 - Para acceder al endpoint `/scrape`, el token debe ser incluido en el encabezado `Authorization` y es validado por la función Lambda antes de proceder con el scraping.
 - El endpoint `/validate` permite verificar la validez de un token JWT en cualquier momento.
+# Oportunidades de Mejora y Evolución Futura
+
+## Fortalecimiento de la Seguridad y Gestión de Identidades
+
+Actualmente, la API de Web Scraping gestiona su propia autenticación de consumidores (Web App Backend). Centralizar esto podría ser beneficioso.
+
+**Integración con un Servicio de Identidad Gestionado de AWS (Cognito)**:  
+Se podría implementar Amazon Cognito User Pools para la gestión de usuarios internos de esta API. Esto permitiría:
+
+- **Validación de Tokens con Lambda Authorizers**: Utilizar Amazon Cognito Authorizers en API Gateway para validar los JWTs. Esto eliminaría la necesidad de incluir la lógica de validación de tokens directamente en cada función Lambda, centralizando la seguridad en la capa de la API Gateway y simplificando el código de la función.
+
+- **Roles y Permisos Centralizados**: Gestionar roles y grupos de usuarios de forma más estructurada, lo que facilitaría el control de acceso si diferentes consumidores necesitaran distintos niveles de permiso para las funciones de scraping.
+
