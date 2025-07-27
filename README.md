@@ -137,7 +137,7 @@ El servicio expone varios endpoints a través de AWS API Gateway.
     }
     ```
     
-- **Ejemplo de Respuesta Exitosa (200 OK):**JSON
+- **Ejemplo de Respuesta Exitosa:**
     
     ```json
     {
@@ -156,7 +156,7 @@ El servicio expone varios endpoints a través de AWS API Gateway.
     
     `POST /login`
     
-- **Body de Solicitud (JSON):**JSON
+- **Body de Solicitud:**
     
     ```json
     {
@@ -195,7 +195,7 @@ El servicio expone varios endpoints a través de AWS API Gateway.
     GET https://[id-api-gateway].execute-api.[region].amazonaws.com/dev/validate
     ```
     
-- **Ejemplo de Respuesta Exitosa (200 OK):**JSON
+- **Ejemplo de Respuesta Exitosa:**
     
     ```json
     {
