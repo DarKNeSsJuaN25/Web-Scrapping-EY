@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "87e8e95e-57a9-4ee9-95b5-87059c7855d7",
+		"name": "Scraping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29311944"
+	},
+	"item": [
+		{
+			"name": "Scraping",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"María López\",\n  \"dni\": \"87654321\",\n  \"fecha_nac\": \"1990-05-20\",\n  \"sexo\": \"F\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://34.203.252.203:8000/students",
+					"protocol": "http",
+					"host": [
+						"34",
+						"203",
+						"252",
+						"203"
+					],
+					"port": "8000",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://34.203.252.203:8000/student/1",
+					"protocol": "http",
+					"host": [
+						"34",
+						"203",
+						"252",
+						"203"
+					],
+					"port": "8000",
+					"path": [
+						"student",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
