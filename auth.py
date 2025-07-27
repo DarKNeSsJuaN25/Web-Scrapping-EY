@@ -28,7 +28,6 @@ def crear_usuario(event, context):
 
         hashed_password = hash_password(password)
 
-        # Evita usuarios duplicados
         table.put_item(
             Item={
                 'tenant_id': tenant_id,

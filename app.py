@@ -14,7 +14,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 
-# Clave secreta compartida con los endpoints de login/register
 SECRET_KEY = os.environ["JWT_SECRET"]
 
 def verificar_token(headers):
@@ -56,7 +55,6 @@ def initialise_driver():
     return driver
 
 def lambda_handler(event, context):
-    # Autenticación JWT
     try:
         headers = event.get("headers", {})
         user_info = verificar_token(headers)
@@ -67,7 +65,6 @@ def lambda_handler(event, context):
             "body": json.dumps({"error": str(e)})
         }
 
-    # Parámetros de entrada
     params = event.get('queryStringParameters') or {}
     nombre_entidad = params.get('nombre')
 

@@ -26,8 +26,10 @@ provider:
   stage: dev
   timeout: 30
   environment:
-    TABLE_NAME: UsuariosTable
-    JWT_SECRET: tu_clave_secreta_segura # Cambia esto por una segura
+    TABLE_NAME: UsuariosTable-${self:provider.stage}
+    JWT_SECRET: ${file(env.${self:provider.stage}.yml):JWT_SECRET}
+
+
   iam:
     role: arn:aws:iam::352677750379:role/LabRole
   ecr:
@@ -78,7 +80,7 @@ resources:
     UsuariosTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: UsuariosTable
+        TableName: UsuariosTable-${self:provider.stage} 
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: tenant_id
