@@ -1,5 +1,4 @@
-# Documentación de la API de Web Scraping
-
+# Documentación - Diligencia de Proveedores - Api Web-Scraping
 Este documento describe el servicio de web scraping que utiliza **AWS Lambda** con **Selenium** para recopilar información de diversas fuentes, así como su propio sistema de autenticación de usuarios. Este servicio es fundamental para los procesos de diligencia de proveedores.
 
 # Visión General del Servicio
